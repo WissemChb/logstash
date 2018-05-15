@@ -1,0 +1,6 @@
+---
+# defaults file for logstash
+logstash_gpgkey_redhat: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+logstash_baseurl_redhat: "https://artifacts.elastic.co/packages/6.x/yum"
+logstash_gpgkey_debian: "https://packages.elastic.co/GPG-KEY-elasticsearch"
+logstash_repo_debian: "deb http://packages.elastic.co/logstash/2.3/debian stable main"

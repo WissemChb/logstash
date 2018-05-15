@@ -1,0 +1,21 @@
+---
+# tasks file for logstash
+#Installing Java
+- name: "Installing Java"
+  include_role:
+    name: java
+
+#Installing logstash in Debian systems
+- name: "Installing Logstash in Debian systems"
+  include: logstash-{{ debian_system }}.yml
+  when: ansible_os_family == 'Debian'
+
+#Installing logstash in RedHat systems
+- name: "Installing Logstash in RedHat systems"
+  include: logstash-{{ redhat_system }}.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: "check logstash is well installed"
+  shell: whereis logstash
+  register: logstash_output
+  failed_when: "'/etc/logstash' not in logstash_output.stdout"

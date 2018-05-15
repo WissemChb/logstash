@@ -1,0 +1,28 @@
+#Adding rpm GPG KEY
+- name: "Add RPM GPG key"
+  rpm_key:
+    state: present
+    key: "{{ logstash_gpgkey_redhat }}"
+  
+#Add logstash repository
+- name: "Add logstash repository"
+  yum_repository:
+    name: logstash 
+    description: This is the logstash repo 
+    baseurl: "{{ logstash_baseurl_redhat }}"
+    gpgkey: "{{ logstash_gpgkey_redhat }}"
+    gpgcheck: yes
+
+#updating the system
+- name: "Update the system"
+  yum:
+    name: '*'
+    state: latest
+
+#Installing logstash
+- name: "Installing logstash"
+  yum:
+    name: logstash
+    state: latest
+    
+

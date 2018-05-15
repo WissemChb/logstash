@@ -1,0 +1,24 @@
+
+#Adding GPG key for logstash
+- name: "Adding GPG key"
+  apt_key:
+    url: "{{ logstash_gpgkey_debian }}"
+    state: present
+
+#Adding logstash repository
+- name: "Adding logstash repository"
+  apt_repository:
+    repo: "{{ logstash_repo_debian }}"
+    state: present
+
+#Update the system
+- name:  "Update the system"
+  apt:
+    name: '*'
+    state: latest
+
+#Install logstash
+- name: "Installing logstash"
+  apt:
+    name: logstash
+    state: latest
